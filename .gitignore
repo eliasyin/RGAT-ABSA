@@ -1,0 +1,11 @@
+.vscode/launch.json
+
+__pycache__/*
+
+output/*
+
+runs/*
+data/output-gcn/eval_results.txt
+
+*.log
+*.txt

@@ -144,6 +144,8 @@ class Aspect_Text_GAT_only(nn.Module):
 
         # if args.gat:
         if args.gat_attention_type == 'linear':
+            # 这里使用列表是有问题的，应当使用ModuelList
+            # 这里是多头注意力模块
             self.gat = [LinearAttention(in_dim = gcn_input_dim, mem_dim = gcn_input_dim).to(args.device) for i in range(args.num_heads)] # we prefer to keep the dimension unchanged
         elif args.gat_attention_type == 'dotprod':
             self.gat = [DotprodAttention().to(args.device) for i in range(args.num_heads)]
@@ -191,7 +193,7 @@ class Aspect_Text_GAT_only(nn.Module):
 
         feature, _ = self.bilstm(feature) # (N,L,D)
         aspect_feature, _ = self.bilstm(aspect_feature) #(N,L,D)
-
+        # 因为是双向LSTM，所以输出维度是hidden_size*2
         aspect_feature = aspect_feature.mean(dim = 1) # (N, D)
 
         ############################################################################################

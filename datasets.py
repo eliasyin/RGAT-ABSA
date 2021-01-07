@@ -263,7 +263,7 @@ def reshape_dependency_tree(as_start, as_end, dependencies, add_2hop=False, add_
     return dep_tag, dep_idx, dep_dir
 
 def get_rolled_and_unrolled_data(input_data, args):
-    '''
+    r"""
     In input_data, each sentence could have multiple aspects with different sentiments.
     Our method treats each sentence with one aspect at a time, so even for
     multi-aspect-multi-sentiment sentences, we will unroll them to single aspect sentence.
@@ -271,17 +271,17 @@ def get_rolled_and_unrolled_data(input_data, args):
     Perform reshape_dependency_tree to each sentence with aspect
 
     return:
-        all_rolled:
-                a list of dict
-                    {sentence, tokens, pos_tags, pos_class, aspects(list of aspects), sentiments(list of sentiments)
-                    froms, tos, dep_tags, dep_index, dependencies}
-        all_unrolled:
-                unrolled, with aspect(single), sentiment(single) and so on...
-        mixed_rolled:
-                Multiple aspects and multiple sentiments, ROLLED.
-        mixed_unrolled:
-                Multiple aspects and multiple sentiments, UNROLLED.
-    '''
+        all_rolled: 
+                a list of dict 
+                    {sentence, tokens, pos_tags, pos_class, aspects(list of aspects), sentiments(list of sentiments) 
+                    froms, tos, dep_tags, dep_index, dependencies} 
+        all_unrolled: 
+                unrolled, with aspect(single), sentiment(single) and so on... 
+        mixed_rolled: 
+                Multiple aspects and multiple sentiments, ROLLED. 
+        mixed_unrolled: 
+                Multiple aspects and multiple sentiments, UNROLLED. 
+    """
     # A hand-picked set of part of speech tags that we see contributes to ABSA.
     opinionated_tags = ['JJ', 'JJR', 'JJS', 'RB', 'RBR',
                         'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
